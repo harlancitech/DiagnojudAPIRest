@@ -16,6 +16,11 @@ import javax.persistence.Table;
 
 import br.net.itech.enuns.DiagnosticStatus;
 
+/**
+ * 
+ * @author Harlan Cleiton
+ * @email harlan@itech.net.br
+ */
 @Entity
 @Table(name = "diagnostics")
 public class Diagnosis implements Serializable {
