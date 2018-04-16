@@ -1,6 +1,5 @@
 package br.net.itech.enuns;
 
 public enum AttorneyStatus {
-	AVAILABLE,
-	UNAVAILABLE
+	AVAILABLE, UNAVAILABLE, PENDING
 }
