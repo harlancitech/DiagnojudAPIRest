@@ -2,12 +2,16 @@ package br.net.itech.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -20,8 +24,14 @@ public class Attorney implements Serializable {
 	private static final long serialVersionUID = 3936655604258103956L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private People people;
+
+	@OneToMany(mappedBy = "attorney", fetch = FetchType.LAZY)
+	List<Diagnosis> diagnostics;
 
 	@Column(name = "oab", nullable = false)
 	private String oab;
@@ -66,6 +76,22 @@ public class Attorney implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public People getPeople() {
+		return people;
+	}
+
+	public void setPeople(People people) {
+		this.people = people;
+	}
+
+	public List<Diagnosis> getDiagnostics() {
+		return diagnostics;
+	}
+
+	public void setDiagnostics(List<Diagnosis> diagnostics) {
+		this.diagnostics = diagnostics;
 	}
 
 	public String getOab() {

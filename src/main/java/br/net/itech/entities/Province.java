@@ -18,7 +18,7 @@ public class Province implements Serializable {
 	private static final long serialVersionUID = -2501545179944698731L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "name", nullable = false)

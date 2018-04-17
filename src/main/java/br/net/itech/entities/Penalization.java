@@ -22,7 +22,7 @@ public class Penalization implements Serializable {
 	private static final long serialVersionUID = 6839227367991205298L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "penalization", nullable = false)

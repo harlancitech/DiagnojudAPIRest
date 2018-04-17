@@ -7,9 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -27,11 +29,14 @@ public class Diagnosis implements Serializable {
 	private static final long serialVersionUID = -3130246109561030177L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "description")
 	private String description;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Attorney attorney;
 
 	@Column(name = "status")
 	@Enumerated(EnumType.ORDINAL)
@@ -73,6 +78,14 @@ public class Diagnosis implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Attorney getAttorney() {
+		return attorney;
+	}
+
+	public void setAttorney(Attorney attorney) {
+		this.attorney = attorney;
 	}
 
 	public DiagnosticStatus getDiagnosticStatus() {

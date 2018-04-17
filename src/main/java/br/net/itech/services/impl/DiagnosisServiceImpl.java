@@ -16,7 +16,7 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	@Autowired
 	DiagnosisRepository diagnosisRepository;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DiagnosisService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DiagnosisServiceImpl.class);
 
 	@Override
 	public Optional<Diagnosis> findById(Integer id) {

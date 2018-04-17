@@ -11,7 +11,7 @@ public class DiagnosisDtoFactory {
 		DiagnosisDto diagnosisDto = new DiagnosisDto();
 		diagnosisDto.setId(String.valueOf(diagnosis.getId()));
 		diagnosisDto.setDescription(diagnosis.getDescription());
-		//diagnosisDto.setDiagnosisStatus(diagnosis.getDiagnosticStatus().toString());
+		diagnosisDto.setDiagnosticStatus(diagnosis.getDiagnosticStatus().toString());
 		return diagnosisDto;
 	}
 }

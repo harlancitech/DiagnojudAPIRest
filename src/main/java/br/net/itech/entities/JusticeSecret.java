@@ -11,7 +11,7 @@ import javax.persistence.PreUpdate;
 
 public class JusticeSecret {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "justice_secret", nullable = false)

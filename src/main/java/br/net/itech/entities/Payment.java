@@ -14,7 +14,7 @@ public class Payment implements Serializable {
 	private static final long serialVersionUID = 1966030427848576422L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "value")

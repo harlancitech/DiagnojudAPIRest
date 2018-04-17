@@ -2,14 +2,18 @@ package br.net.itech.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -22,13 +26,13 @@ public class People implements Serializable {
 	private static final long serialVersionUID = 767917593308706753L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "registry", nullable = false)
+	@Column(name = "registry")
 	private Integer registry;
 
 	@Column(name = "email", nullable = false)
@@ -40,7 +44,13 @@ public class People implements Serializable {
 	@Column(name = "rg", nullable = false)
 	private String rg;
 
-	@Column(name = "date_birth", nullable = false)
+	@OneToMany(mappedBy = "people", fetch = FetchType.LAZY)
+	private List<Process> processes;
+
+	@OneToOne(mappedBy = "people", fetch = FetchType.LAZY)
+	private Attorney attorney;
+
+	@Column(name = "date_birth")
 	private Date dateBirth;
 
 	@Column(name = "profile")
@@ -115,6 +125,22 @@ public class People implements Serializable {
 
 	public void setRg(String rg) {
 		this.rg = rg;
+	}
+
+	public List<Process> getProcesses() {
+		return processes;
+	}
+
+	public void setProcesses(List<Process> processes) {
+		this.processes = processes;
+	}
+
+	public Attorney getAttorney() {
+		return attorney;
+	}
+
+	public void setAttorney(Attorney attorney) {
+		this.attorney = attorney;
 	}
 
 	public Date getDateBirth() {

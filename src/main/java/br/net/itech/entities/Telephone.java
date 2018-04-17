@@ -19,7 +19,7 @@ public class Telephone implements Serializable {
 	private static final long serialVersionUID = -7817985892148822576L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "country_code")

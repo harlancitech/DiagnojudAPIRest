@@ -7,9 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -22,7 +24,7 @@ public class Process implements Serializable {
 	private static final long serialVersionUID = 6301693464670926923L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "title", nullable = false)
@@ -34,6 +36,9 @@ public class Process implements Serializable {
 	@Column(name = "court", nullable = false)
 	private String court;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	private People people;
+
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "justiceType", nullable = false)
 	private JusticeTypes justiceType;
@@ -41,8 +46,8 @@ public class Process implements Serializable {
 	@Column(name = "processNumber", nullable = false)
 	private String processNumber;
 
-	@Column(name = "attorney", nullable = false)
-	private Boolean attorney;
+	@Column(name = "with_attorney", nullable = false)
+	private Boolean withAttorney;
 
 	@Column(name = "oabAttorney")
 	private String oabAttorney;
@@ -96,6 +101,14 @@ public class Process implements Serializable {
 		this.description = description;
 	}
 
+	public People getPeople() {
+		return people;
+	}
+
+	public void setPeople(People people) {
+		this.people = people;
+	}
+
 	public String getCourt() {
 		return court;
 	}
@@ -120,12 +133,12 @@ public class Process implements Serializable {
 		this.processNumber = processNumber;
 	}
 
-	public Boolean getAttorney() {
-		return attorney;
+	public Boolean getWithAttorney() {
+		return withAttorney;
 	}
 
-	public void setAttorney(Boolean attorney) {
-		this.attorney = attorney;
+	public void setWithAttorney(Boolean withAttorney) {
+		this.withAttorney = withAttorney;
 	}
 
 	public String getOabAttorney() {
@@ -188,8 +201,8 @@ public class Process implements Serializable {
 	@Override
 	public String toString() {
 		return "Process [id=" + id + ", title=" + title + ", description=" + description + ", court=" + court
-				+ ", justiceType=" + justiceType + ", processNumber=" + processNumber + ", attorney=" + attorney
-				+ ", oabAttorney=" + oabAttorney + ", confidentialProcess=" + confidentialProcess + ", creationDate="
-				+ creationDate + ", updateDate=" + updateDate + "]";
+				+ ", people=" + people + ", justiceType=" + justiceType + ", processNumber=" + processNumber
+				+ ", withAttorney=" + withAttorney + ", oabAttorney=" + oabAttorney + ", confidentialProcess="
+				+ confidentialProcess + ", creationDate=" + creationDate + ", updateDate=" + updateDate + "]";
 	}
 }
