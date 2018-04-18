@@ -36,7 +36,7 @@ public class Address implements Serializable {
 	
 	@OneToOne
 	private City city;
-	
+
 	@OneToOne(mappedBy="address")
 	private People people;
 
@@ -101,6 +101,22 @@ public class Address implements Serializable {
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
+	
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public People getPeople() {
+		return people;
+	}
+
+	public void setPeople(People people) {
+		this.people = people;
+	}
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -146,6 +162,7 @@ public class Address implements Serializable {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", district=" + district + ", number=" + number
-				+ ", complement=" + complement + ", creationDate=" + creationDate + ", updateDate=" + updateDate + "]";
+				+ ", complement=" + complement + ", city=" + city + ", people=" + people + ", creationDate="
+				+ creationDate + ", updateDate=" + updateDate + "]";
 	}
 }

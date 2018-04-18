@@ -2,11 +2,11 @@ package br.net.itech.dtos;
 
 public class DiagnosisDto {
 	private String id;
-	
+
 	private String description;
-	
+
 	private String diagnosticStatus;
-	
+
 	public DiagnosisDto() {
 	}
 
@@ -36,6 +36,7 @@ public class DiagnosisDto {
 
 	@Override
 	public String toString() {
-		return "DiagnosisDto [id=" + id + ", description=" + description + ", diagnosisStatus=" + diagnosticStatus + "]";
+		return "DiagnosisDto [id=" + id + ", description=" + description + ", diagnosisStatus=" + diagnosticStatus
+				+ "]";
 	}
 }

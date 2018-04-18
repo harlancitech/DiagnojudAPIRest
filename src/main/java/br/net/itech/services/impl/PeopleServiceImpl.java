@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import br.net.itech.entities.People;
 import br.net.itech.repositories.PeopleRepository;
-import br.net.itech.services.DiagnosisService;
 import br.net.itech.services.PeopleService;
 
 @Service

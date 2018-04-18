@@ -1,11 +1,11 @@
 package br.net.itech.dtos;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class PeopleRegistrationDto {
 	@NotEmpty(message = "Nome não pode ser vazio")
@@ -23,6 +23,10 @@ public class PeopleRegistrationDto {
 	@NotEmpty(message = "RG não pode ser vazio.")
 	@Length(min = 10, max = 10, message = "RG inválido")
 	private String rg;
+
+	@Valid
+	//@NotEmpty(message = "Endereço não pode ser vazio")
+	private AddressDto address;
 
 	// @DateTimeFormat
 	// private String dateBirth;
@@ -62,8 +66,17 @@ public class PeopleRegistrationDto {
 		this.rg = rg;
 	}
 
+	public AddressDto getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressDto address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
-		return "PeopleRegistrationDto [name=" + name + ", email=" + email + ", cpf=" + cpf + ", rg=" + rg + "]";
+		return "PeopleRegistrationDto [name=" + name + ", email=" + email + ", cpf=" + cpf + ", rg=" + rg + ", address="
+				+ address + "]";
 	}
 }
