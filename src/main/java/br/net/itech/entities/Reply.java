@@ -5,9 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -23,6 +25,9 @@ public class Reply implements Serializable {
 
 	@Column(name = "description", nullable = false)
 	private String description;
+
+	@OneToOne(mappedBy = "reply", fetch = FetchType.LAZY)
+	private Diagnosis diagnosis;
 
 	@Column(name = "creation_date")
 	private Date creationDate;
@@ -60,6 +65,14 @@ public class Reply implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Diagnosis getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(Diagnosis diagnosis) {
+		this.diagnosis = diagnosis;
 	}
 
 	public Date getCreationDate() {

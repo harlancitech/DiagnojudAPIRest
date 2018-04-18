@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import br.net.itech.dtos.DiagnosisDto;
 import br.net.itech.entities.Diagnosis;
-import br.net.itech.enuns.DiagnosticStatus;
+import br.net.itech.enums.DiagnosticStatus;
 
 @Component
 public class DiagnosisFactory {

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -32,6 +33,12 @@ public class Address implements Serializable {
 
 	@Column(name = "complement")
 	private String complement;
+	
+	@OneToOne
+	private City city;
+	
+	@OneToOne(mappedBy="address")
+	private People people;
 
 	@Column(name = "creation_date")
 	private Date creationDate;

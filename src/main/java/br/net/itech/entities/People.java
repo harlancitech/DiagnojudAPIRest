@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -18,7 +19,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import br.net.itech.enuns.ProfileTypes;
+import br.net.itech.enums.ProfileTypes;
 
 @Entity
 @Table(name = "people")
@@ -44,10 +45,16 @@ public class People implements Serializable {
 	@Column(name = "rg", nullable = false)
 	private String rg;
 
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Address address;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Telephone> telephone;
+
 	@OneToMany(mappedBy = "people", fetch = FetchType.LAZY)
 	private List<Process> processes;
 
-	@OneToOne(mappedBy = "people", fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	private Attorney attorney;
 
 	@Column(name = "date_birth")
@@ -127,6 +134,22 @@ public class People implements Serializable {
 		this.rg = rg;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<Telephone> getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(List<Telephone> telephone) {
+		this.telephone = telephone;
+	}
+
 	public List<Process> getProcesses() {
 		return processes;
 	}
@@ -203,7 +226,8 @@ public class People implements Serializable {
 	@Override
 	public String toString() {
 		return "People [id=" + id + ", name=" + name + ", registry=" + registry + ", email=" + email + ", cpf=" + cpf
-				+ ", rg=" + rg + ", dateBirth=" + dateBirth + ", profileType=" + profileType + ", creationDate="
-				+ creationDate + ", updateDate=" + updateDate + "]";
+				+ ", rg=" + rg + ", address=" + address + ", processes=" + processes + ", attorney=" + attorney
+				+ ", dateBirth=" + dateBirth + ", profileType=" + profileType + ", creationDate=" + creationDate
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

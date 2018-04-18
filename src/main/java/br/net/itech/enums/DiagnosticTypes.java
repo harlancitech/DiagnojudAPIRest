@@ -1,4 +1,4 @@
-package br.net.itech.enuns;
+package br.net.itech.enums;
 
 public enum DiagnosticTypes {
 	SIMPLE, COMPLETE, SPECIFIC

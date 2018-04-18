@@ -14,7 +14,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import br.net.itech.enuns.PenalizationTypes;
+import br.net.itech.enums.PenalizationTypes;
 
 @Entity
 @Table(name = "penalizations")

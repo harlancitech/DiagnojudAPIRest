@@ -2,13 +2,20 @@ package br.net.itech.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "justice_secret")
 public class JusticeSecret {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,12 +24,15 @@ public class JusticeSecret {
 	@Column(name = "justice_secret", nullable = false)
 	private String justiceSecret;
 
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private Process process;
+
 	@Column(name = "creation_date")
 	private Date creationDate;
 
 	@Column(name = "update_date")
 	private Date updateDate;
-	
+
 	public JusticeSecret() {
 	}
 
@@ -53,6 +63,14 @@ public class JusticeSecret {
 
 	public void setJusticeSecret(String justiceSecret) {
 		this.justiceSecret = justiceSecret;
+	}
+
+	public Process getProcess() {
+		return process;
+	}
+
+	public void setProcess(Process process) {
+		this.process = process;
 	}
 
 	public Date getCreationDate() {

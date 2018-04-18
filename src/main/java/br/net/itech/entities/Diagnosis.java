@@ -12,11 +12,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import br.net.itech.enuns.DiagnosticStatus;
+import br.net.itech.enums.DiagnosticStatus;
 
 /**
  * 
@@ -41,6 +42,9 @@ public class Diagnosis implements Serializable {
 	@Column(name = "status")
 	@Enumerated(EnumType.ORDINAL)
 	private DiagnosticStatus diagnosticStatus;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Reply reply;
 
 	@Column(name = "date_diagnosis")
 	private Date dateDiagnosis;
@@ -102,6 +106,14 @@ public class Diagnosis implements Serializable {
 
 	public void setDateDiagnosis(Date dateDiagnosis) {
 		this.dateDiagnosis = dateDiagnosis;
+	}
+
+	public Reply getReply() {
+		return reply;
+	}
+
+	public void setReply(Reply reply) {
+		this.reply = reply;
 	}
 
 	public Date getCreationDate() {

@@ -5,9 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -23,6 +25,9 @@ public class City implements Serializable {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Province province;
 
 	@Column(name = "creation_date")
 	private Date creationDate;
@@ -60,6 +65,14 @@ public class City implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
 	}
 
 	public Date getCreationDate() {

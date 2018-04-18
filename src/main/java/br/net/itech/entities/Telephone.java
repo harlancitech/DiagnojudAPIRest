@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
@@ -30,6 +31,9 @@ public class Telephone implements Serializable {
 
 	@Column(name = "telephone")
 	private String telephone;
+	
+	@ManyToOne
+	private People people;
 
 	@Column(name = "creation_date")
 	private Date creationDate;

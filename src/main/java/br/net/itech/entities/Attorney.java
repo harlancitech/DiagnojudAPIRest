@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import br.net.itech.enuns.AttorneyStatus;
+import br.net.itech.enums.AttorneyStatus;
 
 @Entity
 @Table(name = "attorneys")
@@ -27,7 +29,7 @@ public class Attorney implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "attorney", fetch = FetchType.LAZY)
 	private People people;
 
 	@OneToMany(mappedBy = "attorney", fetch = FetchType.LAZY)
@@ -43,6 +45,7 @@ public class Attorney implements Serializable {
 	private Integer score;
 
 	@Column(name = "status")
+	@Enumerated(EnumType.ORDINAL)
 	private AttorneyStatus status;
 
 	@Column(name = "ban")

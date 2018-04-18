@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.net.itech.dtos.PeopleDto;
 import br.net.itech.dtos.PeopleRegistrationDto;
 import br.net.itech.entities.People;
-import br.net.itech.enuns.ProfileTypes;
+import br.net.itech.enums.ProfileTypes;
 import br.net.itech.factories.dtos.PeopleDtoFactory;
 import br.net.itech.factories.entities.PeopleRegistrationFactory;
 import br.net.itech.response.Response;

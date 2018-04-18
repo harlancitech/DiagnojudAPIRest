@@ -16,7 +16,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import br.net.itech.enuns.JusticeTypes;
+import br.net.itech.enums.JusticeTypes;
 
 @Entity
 @Table(name = "processes")
