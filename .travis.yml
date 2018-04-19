@@ -15,7 +15,6 @@ addons:
 before_install:
   - chmod +x mvnw
   - sudo mysql -e 'create database diagnojud'
-  - sudo mysql -e "GRANT ALL ON diagnojud.* TO 'root'@'localhost' IDENTIFIED BY 'helloworld';"
-  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('helloworld') where User='root'; update user set plugin='mysql_native_password'; FLUSH PRIVILEGES;"
-  - sudo mysql_upgrade
+  - mysql -e "CREATE USER 'diagnojud'@'localhost' IDENTIFIED BY 'helloworld';"
+  - mysql -e "GRANT ALL ON diagnojud.* TO 'diagnojud'@'localhost';"
   - sudo service mysql restart
