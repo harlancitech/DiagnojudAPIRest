@@ -14,8 +14,8 @@ public class DiagnosisFactory {
 		if (diagnosisDto.getId() != null)
 			diagnosis.setId(Integer.parseInt(diagnosisDto.getId()));
 		diagnosis.setDescription(diagnosisDto.getDescription());
-		if (EnumUtils.isValidEnum(DiagnosticStatus.class, diagnosisDto.getDiagnosticStatus()))
-			diagnosis.setDiagnosticStatus(DiagnosticStatus.valueOf(diagnosisDto.getDiagnosticStatus()));
+//		if (EnumUtils.isValidEnum(DiagnosticStatus.class, diagnosisDto.getDiagnosticStatus()))
+//			diagnosis.setDiagnosticStatus(DiagnosticStatus.valueOf(diagnosisDto.getDiagnosticStatus()));
 		return diagnosis;
 	}
 }

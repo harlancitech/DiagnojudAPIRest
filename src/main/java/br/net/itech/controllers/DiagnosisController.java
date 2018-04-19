@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,16 +46,19 @@ public class DiagnosisController implements Create<DiagnosisDto> {
 		LOGGER.info("Recebendo Diagnostico: {}", objectDto.toString());
 		Response<DiagnosisDto> response = new Response<DiagnosisDto>();
 		Diagnosis diagnosis = diagnosisFactory.getDiagnosis(objectDto);
-		// validadeEnum(diagnosis, objectDto);
+		validadeEnum(diagnosis, objectDto, bindingResult);
 		diagnosis = diagnosisService.create(diagnosis);
 		objectDto = diagnosisDtoFactory.getObject(diagnosis);
 		response.setData(objectDto);
 		return ResponseEntity.ok(response);
 	}
 
-	private void validadeEnum(Diagnosis diagnosis, DiagnosisDto diagnosisDto) {
+	private void validadeEnum(Diagnosis diagnosis, DiagnosisDto diagnosisDto, BindingResult bindingResult) {
 		if (EnumUtils.isValidEnum(DiagnosticStatus.class, diagnosisDto.getDiagnosticStatus())) {
 			diagnosis.setDiagnosticStatus(DiagnosticStatus.valueOf(diagnosisDto.getDiagnosticStatus()));
+		} else {
+			LOGGER.error("Status de diagnostico inválido.");
+			bindingResult.addError(new ObjectError("Status diagnostico", "Status de diagnostico inválido."));
 		}
 	}
 }
