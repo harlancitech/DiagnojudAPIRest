@@ -14,7 +14,7 @@ addons:
       - mysql-client
 before_install:
   - chmod +x mvnw
-  - sudo mysql -e 'create database diagnojud'
-  - mysql -e "CREATE USER 'diagnojud'@'localhost' IDENTIFIED BY 'helloworld';"
-  - mysql -e "GRANT ALL ON diagnojud.* TO 'diagnojud'@'localhost';"
+  - sudo mysql -u root -e 'create database diagnojud'
+  - mysql -u root -e "CREATE USER 'diagnojud'@'localhost' IDENTIFIED BY 'helloworld';"
+  - mysql -u root -e "GRANT ALL ON diagnojud.* TO 'diagnojud'@'localhost';"
   - sudo service mysql restart
