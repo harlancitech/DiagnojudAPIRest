@@ -20,13 +20,25 @@ public class CityServiceImpl implements CityService {
 
 	@Override
 	public Optional<City> findById(Integer id) {
-		LOGGER.info("Buscando Diagnosis por Id: " + id);
+		LOGGER.info("Buscando City por Id: " + id);
 		return cityRepository.findById(id);
 	}
 
 	@Override
+	public Optional<City> findByName(String name) {
+		LOGGER.info("Buscando City por Name: " + name);
+		return cityRepository.findByName(name);
+	}
+
+	@Override
+	public Optional<City> findByNameAndProvinceId(String name, Integer provinceId) {
+		LOGGER.info("Buscando City por Name: " + name + " e ProvinceId: " + provinceId);
+		return cityRepository.findByNameAndProvinceId(name, provinceId);
+	}
+
+	@Override
 	public City create(City city) {
-		LOGGER.info("Persistindo um diagnostico: {}", city);
+		LOGGER.info("Persistindo uma cidade: {}", city);
 		return cityRepository.save(city);
 	}
 }

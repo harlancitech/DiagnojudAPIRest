@@ -33,11 +33,11 @@ public class Address implements Serializable {
 
 	@Column(name = "complement")
 	private String complement;
-	
+
 	@OneToOne
 	private City city;
 
-	@OneToOne(mappedBy="address")
+	@OneToOne(mappedBy = "address")
 	private People people;
 
 	@Column(name = "creation_date")
@@ -101,7 +101,7 @@ public class Address implements Serializable {
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
-	
+
 	public City getCity() {
 		return city;
 	}
@@ -162,7 +162,7 @@ public class Address implements Serializable {
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", district=" + district + ", number=" + number
-				+ ", complement=" + complement + ", city=" + city + ", people=" + people + ", creationDate="
-				+ creationDate + ", updateDate=" + updateDate + "]";
+				+ ", complement=" + complement + ", city=" + city + ", creationDate=" + creationDate + ", updateDate="
+				+ updateDate + "]";
 	}
 }

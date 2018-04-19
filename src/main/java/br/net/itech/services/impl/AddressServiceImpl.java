@@ -8,11 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.net.itech.entities.Address;
-import br.net.itech.entities.City;
 import br.net.itech.repositories.AddressRepository;
-import br.net.itech.repositories.CityRepository;
 import br.net.itech.services.AddressService;
-import br.net.itech.services.CityService;
 
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -23,13 +20,13 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Optional<Address> findById(Integer id) {
-		LOGGER.info("Buscando Diagnosis por Id: " + id);
+		LOGGER.info("Buscando Address por Id: " + id);
 		return addressRepository.findById(id);
 	}
 
 	@Override
 	public Address create(Address address) {
-		LOGGER.info("Persistindo um diagnostico: {}", address);
+		LOGGER.info("Persistindo um endereço: {}", address);
 		return addressRepository.save(address);
 	}
 }

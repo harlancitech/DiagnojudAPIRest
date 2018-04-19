@@ -19,7 +19,6 @@ import br.net.itech.controllers.crud.Create;
 import br.net.itech.dtos.DiagnosisDto;
 import br.net.itech.entities.Diagnosis;
 import br.net.itech.enums.DiagnosticStatus;
-import br.net.itech.enums.DiagnosticTypes;
 import br.net.itech.factories.dtos.DiagnosisDtoFactory;
 import br.net.itech.factories.entities.DiagnosisFactory;
 import br.net.itech.response.Response;

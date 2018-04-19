@@ -1,10 +1,10 @@
 package br.net.itech.controllers;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.hibernate.service.internal.ProvidedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.net.itech.dtos.CityDto;
 import br.net.itech.dtos.PeopleDto;
 import br.net.itech.dtos.PeopleRegistrationDto;
+import br.net.itech.dtos.ProvinceDto;
 import br.net.itech.entities.Address;
 import br.net.itech.entities.City;
 import br.net.itech.entities.People;
@@ -72,25 +74,62 @@ public class PeopleRegistrationController {// implements Create<PeopleRegistrati
 		LOGGER.info("Recebendo pessoa: {}", objectDto);
 		Response<PeopleDto> response = new Response<PeopleDto>();
 		validate(objectDto, bindingResult);
+
 		if (bindingResult.hasErrors()) {
 			LOGGER.info("Erro ao validar cadastro de pessoa: {}", bindingResult.getAllErrors());
 			bindingResult.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-		Province province = provinceService
-				.create(provinceFactory.getProvince(objectDto.getAddress().getCity().getProvince()));
-		City city = cityFactory.getCity(objectDto.getAddress().getCity());
-		city.setProvince(province);
-		city = cityService.create(city);
+
+		People people = checkDependencies(objectDto);
+		people.setProfileType(ProfileTypes.CLIENT);
+		people = peopleService.create(people);
+		LOGGER.info("Pessoa criada: {}", people.toString());
+		response.setData(peopleDtoFactory.getPeopleDto(people));
+		return ResponseEntity.ok(response);
+	}
+
+	private People checkDependencies(PeopleRegistrationDto objectDto) {
+		Province province = recoverOrCreate(objectDto.getAddress().getCity().getProvince());
+
+		CityDto cityDto = objectDto.getAddress().getCity();
+		cityDto.getProvince().setId(String.valueOf(province.getId()));
+		City city = recoverOrCreate(objectDto.getAddress().getCity());
+
 		Address address = addressFactory.getAddress(objectDto.getAddress());
 		address.setCity(city);
 		address = addressService.create(address);
+
 		People people = peopleRegistrationFactory.getPeople(objectDto);
 		people.setAddress(address);
-		people.setProfileType(ProfileTypes.CLIENT);
-		people = peopleService.create(people);
-		response.setData(peopleDtoFactory.getPeopleDto(people));
-		return ResponseEntity.ok(response);
+		return people;
+	}
+
+	private Province recoverOrCreate(ProvinceDto provinceDto) {
+		Optional<Province> prOptional = provinceService.findByName(provinceDto.getName());
+
+		if (prOptional.isPresent()) {
+			LOGGER.info("Estado encontrado: {}", prOptional.get());
+			return prOptional.get();
+		}
+
+		Province province = provinceService.create(provinceFactory.getProvince(provinceDto));
+		LOGGER.info("Novo estado criado: {}", province);
+		return province;
+	}
+
+	private City recoverOrCreate(CityDto cityDto) {
+		Optional<City> cOptional = cityService.findByNameAndProvinceId(cityDto.getName(),
+				Integer.parseInt(cityDto.getProvince().getId()));
+
+		if (cOptional.isPresent()) {
+			LOGGER.info("Cidade encontrada: {}", cOptional.get());
+			return cOptional.get();
+		}
+
+		City city = cityService.create(cityFactory.getCity(cityDto));
+		LOGGER.info("Nova cidade criada: {}", city);
+		return city;
 	}
 
 	private void validate(PeopleRegistrationDto peopleRegistrationDto, BindingResult bindingResult) {

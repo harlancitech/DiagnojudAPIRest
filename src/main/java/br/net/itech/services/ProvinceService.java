@@ -12,6 +12,14 @@ public interface ProvinceService {
 	 * @return Optional<Province>
 	 */
 	Optional<Province> findById(Integer id);
+	
+	/**
+	 * Find Province by Name
+	 * 
+	 * @param Name
+	 * @return Optional<Province>
+	 */
+	Optional<Province> findByName(String name);
 
 	/**
 	 * Create Province

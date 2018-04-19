@@ -16,4 +16,12 @@ public interface ProvinceRepository extends JpaRepository<Province, Integer> {
 	 * @return Optional<Province>
 	 */
 	Optional<Province> findById(Integer id);
+
+	/**
+	 * Find Diagnosis by Name
+	 * 
+	 * @param Name
+	 * @return Optional<Province>
+	 */
+	Optional<Province> findByName(String name);
 }

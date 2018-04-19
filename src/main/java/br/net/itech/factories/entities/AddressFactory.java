@@ -18,6 +18,8 @@ public class AddressFactory {
 		address.setStreet(addressDto.getStreet());
 		address.setDistrict(addressDto.getDistrict());
 		address.setNumber(addressDto.getNumber());
+		if (addressDto.getComplement().isPresent())
+			address.setComplement(addressDto.getComplement().get());
 		address.setCity(cityFactory.getCity(addressDto.getCity()));
 		return address;
 	}

@@ -20,13 +20,19 @@ public class ProvinceServiceImpl implements ProvinceService {
 
 	@Override
 	public Optional<Province> findById(Integer id) {
-		LOGGER.info("Buscando Diagnosis por Id: " + id);
+		LOGGER.info("Buscando Province por Id: " + id);
 		return provinceRepository.findById(id);
 	}
 
 	@Override
+	public Optional<Province> findByName(String name) {
+		LOGGER.info("Buscando Province por Name: " + name);
+		return provinceRepository.findByName(name);
+	}
+
+	@Override
 	public Province create(Province province) {
-		LOGGER.info("Persistindo um diagnostico: {}", province);
+		LOGGER.info("Persistindo um estado: {}", province);
 		return provinceRepository.save(province);
 	}
 }
