@@ -1,7 +1,6 @@
 package br.net.itech.controllers;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Optional;
 
 import javax.validation.Valid;
 

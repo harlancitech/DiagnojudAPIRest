@@ -13,7 +13,8 @@ public class CityFactory {
 
 	public City getCity(CityDto cityDto) {
 		City city = new City();
-		city.setId(Integer.parseInt(cityDto.getId()));
+		if (cityDto.getId() != null)
+			city.setId(Integer.parseInt(cityDto.getId()));
 		city.setName(cityDto.getName());
 		city.setProvince(provinceFactory.getProvince(cityDto.getProvince()));
 		return city;

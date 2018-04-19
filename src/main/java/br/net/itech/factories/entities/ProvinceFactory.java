@@ -9,7 +9,8 @@ import br.net.itech.entities.Province;
 public class ProvinceFactory {
 	public Province getProvince(ProvinceDto provinceDto) {
 		Province province = new Province();
-		province.setId(Integer.parseInt(provinceDto.getId()));
+		if (provinceDto.getId() != null)
+			province.setId(Integer.parseInt(provinceDto.getId()));
 		province.setName(provinceDto.getName());
 		if (provinceDto.getUf().isPresent())
 			province.setUf(provinceDto.getUf().get());

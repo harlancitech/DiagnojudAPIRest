@@ -13,7 +13,8 @@ public class AddressFactory {
 
 	public Address getAddress(AddressDto addressDto) {
 		Address address = new Address();
-		address.setId(Integer.parseInt(addressDto.getId()));
+		if (addressDto.getId() != null)
+			address.setId(Integer.parseInt(addressDto.getId()));
 		address.setStreet(addressDto.getStreet());
 		address.setDistrict(addressDto.getDistrict());
 		address.setNumber(addressDto.getNumber());

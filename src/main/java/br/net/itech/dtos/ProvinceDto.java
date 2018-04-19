@@ -13,8 +13,8 @@ public class ProvinceDto {
 	@Length(min = 4, max = 30, message = "Estado deve conter entre 4 a 30 caracteres.")
 	private String name;
 
-	@Length(min = 2, max = 2, message = "UF deve conter 2 caracteres.")
-	private Optional<String> uf;
+	//@Length(min = 2, max = 2, message = "UF deve conter 2 caracteres.")
+	private Optional<String> uf = Optional.empty();
 
 	public ProvinceDto() {
 	}
