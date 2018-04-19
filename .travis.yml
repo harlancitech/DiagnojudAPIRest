@@ -16,5 +16,5 @@ before_install:
   - chmod +x mvnw
   - sudo mysql -u root -e 'create database diagnojud'
   - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('helloworld') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
-  - sudo mysql_upgrade -p helloworld
+  - sudo mysql_upgrade -phelloworld
   - sudo service mysql restart
