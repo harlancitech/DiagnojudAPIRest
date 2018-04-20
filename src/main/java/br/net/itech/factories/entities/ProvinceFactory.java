@@ -7,6 +7,12 @@ import br.net.itech.entities.Province;
 
 @Component
 public class ProvinceFactory {
+	/**
+	 * Converts an object DTO to entity.
+	 * 
+	 * @param ProvinceDto
+	 * @return Province
+	 */
 	public Province getProvince(ProvinceDto provinceDto) {
 		Province province = new Province();
 		if (provinceDto.getId() != null)

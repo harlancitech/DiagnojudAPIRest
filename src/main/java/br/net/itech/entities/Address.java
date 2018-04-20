@@ -37,7 +37,7 @@ public class Address implements Serializable {
 	@OneToOne
 	private City city;
 
-	@OneToOne(mappedBy = "address")
+	@OneToOne
 	private People people;
 
 	@Column(name = "creation_date")

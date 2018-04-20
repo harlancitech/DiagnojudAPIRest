@@ -6,7 +6,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PeopleRegistrationDto {
 	@NotEmpty(message = "Nome não pode ser vazio")
 	@Length(min = 5, max = 255, message = "O nome deve conter no mínimo 5 caracteres, e no máximo 255.")

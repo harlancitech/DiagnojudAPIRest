@@ -6,7 +6,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AddressDto {
 	private String id;
 

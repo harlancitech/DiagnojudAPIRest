@@ -11,6 +11,12 @@ public class AddressFactory {
 	@Autowired
 	CityFactory cityFactory;
 
+	/**
+	 * Converts an object DTO to entity.
+	 * 
+	 * @param AddressDto
+	 * @return Address
+	 */
 	public Address getAddress(AddressDto addressDto) {
 		Address address = new Address();
 		if (addressDto.getId() != null)

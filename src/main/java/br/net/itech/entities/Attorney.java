@@ -29,7 +29,7 @@ public class Attorney implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(mappedBy = "attorney", fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	private People people;
 
 	@OneToMany(mappedBy = "attorney", fetch = FetchType.LAZY)

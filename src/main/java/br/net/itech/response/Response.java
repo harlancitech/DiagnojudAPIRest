@@ -3,6 +3,15 @@ package br.net.itech.response;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Harlan Cleiton
+ * @email harlan@itech.net.br
+ * 
+ * Encapsulates the data to be sent and any errors generated in the process.
+ *
+ * @param <T>
+ */
 public class Response <T> {
 	private T data;
 	

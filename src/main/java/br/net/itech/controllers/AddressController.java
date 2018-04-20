@@ -29,10 +29,10 @@ public class AddressController implements Read<AddressDto> {
 	private static final Logger LOGGER = LoggerFactory.getLogger(AddressController.class);
 
 	@Override
-	public ResponseEntity<Response<AddressDto>> read(@PathVariable("id") String id) {
+	public ResponseEntity<Response<AddressDto>> read(@PathVariable("id") Integer id) {
 		LOGGER.info("Pesquisando endereço por id: " + id);
 		Response<AddressDto> response = new Response<AddressDto>();
-		Optional<Address> address = addresService.findById(Integer.parseInt(id));
+		Optional<Address> address = addresService.findById(id);
 		AddressDto addressDto = null;
 		if (!address.isPresent()) {
 			LOGGER.error("Não possivel localizar o endereço Id " + id);

@@ -5,7 +5,9 @@ import java.util.Optional;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProvinceDto {
 	private String id;
 
@@ -15,7 +17,9 @@ public class ProvinceDto {
 
 	//@Length(min = 2, max = 2, message = "UF deve conter 2 caracteres.")
 	private Optional<String> uf = Optional.empty();
-
+	
+	private Optional<JusticeSecretDto> justiceSecret = Optional.empty();
+	
 	public ProvinceDto() {
 	}
 
@@ -43,8 +47,16 @@ public class ProvinceDto {
 		this.uf = uf;
 	}
 
+	public Optional<JusticeSecretDto> getJusticeSecret() {
+		return justiceSecret;
+	}
+
+	public void setJusticeSecret(Optional<JusticeSecretDto> justiceSecret) {
+		this.justiceSecret = justiceSecret;
+	}
+
 	@Override
 	public String toString() {
-		return "ProvinceDto [id=" + id + ", name=" + name + ", uf=" + uf + "]";
+		return "ProvinceDto [id=" + id + ", name=" + name + ", uf=" + uf + ", justiceSecret=" + justiceSecret + "]";
 	}
 }

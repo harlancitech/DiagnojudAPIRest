@@ -11,6 +11,12 @@ public class PeopleRegistrationFactory {
 	@Autowired
 	AddressFactory addressFactory;
 
+	/**
+	 * Converts an object DTO to entity.
+	 * 
+	 * @param PeopleRegistrationDto
+	 * @return People
+	 */
 	public People getPeople(PeopleRegistrationDto peopleRegistrationDto) {
 		People people = new People();
 		people.setEmail(peopleRegistrationDto.getEmail());

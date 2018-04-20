@@ -7,6 +7,12 @@ import br.net.itech.entities.Diagnosis;
 
 @Component
 public class DiagnosisDtoFactory {
+	/**
+	 * Converts an entity to object DTO.
+	 * 
+	 * @param Diagnosis
+	 * @return DiagnosisDto
+	 */
 	public DiagnosisDto getObject(Diagnosis diagnosis) {
 		DiagnosisDto diagnosisDto = new DiagnosisDto();
 		diagnosisDto.setId(String.valueOf(diagnosis.getId()));

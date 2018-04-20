@@ -11,6 +11,12 @@ public class CityFactory {
 	@Autowired
 	ProvinceFactory provinceFactory;
 
+	/**
+	 * Converts an object DTO to entity.
+	 * 
+	 * @param CityDto
+	 * @return City
+	 */
 	public City getCity(CityDto cityDto) {
 		City city = new City();
 		if (cityDto.getId() != null)

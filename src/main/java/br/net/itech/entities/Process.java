@@ -3,6 +3,7 @@ package br.net.itech.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -54,6 +56,9 @@ public class Process implements Serializable {
 
 	@Column(name = "confidentialProcess")
 	private Boolean confidentialProcess;
+
+	@OneToOne(mappedBy = "process", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private JusticeSecret justiceSecret;
 
 	@Column(name = "creation_date")
 	private Date creationDate;
@@ -173,6 +178,14 @@ public class Process implements Serializable {
 		this.updateDate = updateDate;
 	}
 
+	public JusticeSecret getJusticeSecret() {
+		return justiceSecret;
+	}
+
+	public void setJusticeSecret(JusticeSecret justiceSecret) {
+		this.justiceSecret = justiceSecret;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -203,6 +216,7 @@ public class Process implements Serializable {
 		return "Process [id=" + id + ", title=" + title + ", description=" + description + ", court=" + court
 				+ ", people=" + people + ", justiceType=" + justiceType + ", processNumber=" + processNumber
 				+ ", withAttorney=" + withAttorney + ", oabAttorney=" + oabAttorney + ", confidentialProcess="
-				+ confidentialProcess + ", creationDate=" + creationDate + ", updateDate=" + updateDate + "]";
+				+ confidentialProcess + ", justiceSecret=" + justiceSecret + ", creationDate=" + creationDate
+				+ ", updateDate=" + updateDate + "]";
 	}
 }

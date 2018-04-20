@@ -11,6 +11,12 @@ public class PeopleDtoFactory {
 	@Autowired
 	AddressDtoFactory addressDtoFactory;
 
+	/**
+	 * Converts an entity to object DTO.
+	 * 
+	 * @param People
+	 * @return PeopleDto
+	 */
 	public PeopleDto getPeopleDto(People people) {
 		PeopleDto peopleDto = new PeopleDto();
 		peopleDto.setId(String.valueOf(people.getId()));

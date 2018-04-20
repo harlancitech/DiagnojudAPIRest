@@ -45,7 +45,7 @@ public class People implements Serializable {
 	@Column(name = "rg", nullable = false)
 	private String rg;
 
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "people", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Address address;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -54,7 +54,7 @@ public class People implements Serializable {
 	@OneToMany(mappedBy = "people", fetch = FetchType.LAZY)
 	private List<Process> processes;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "people", fetch = FetchType.LAZY)
 	private Attorney attorney;
 
 	@Column(name = "date_birth")

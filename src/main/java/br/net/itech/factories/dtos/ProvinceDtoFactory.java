@@ -9,6 +9,12 @@ import br.net.itech.entities.Province;
 
 @Component
 public class ProvinceDtoFactory {
+	/**
+	 * Converts an entity to object DTO.
+	 * 
+	 * @param Province
+	 * @return ProvinceDto
+	 */
 	public ProvinceDto getProvinceDto(Province province) {
 		ProvinceDto provinceDto = new ProvinceDto();
 		if (province.getId() != null)
@@ -16,6 +22,7 @@ public class ProvinceDtoFactory {
 		provinceDto.setName(province.getName());
 		if (province.getUf() != null)
 			provinceDto.setUf(Optional.ofNullable(province.getUf()));
+		//provinceDto
 		return provinceDto;
 	}
 }

@@ -1,5 +1,8 @@
 package br.net.itech.dtos;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class DiagnosisDto {
 	private String id;
 
