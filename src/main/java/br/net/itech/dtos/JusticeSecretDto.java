@@ -1,24 +1,26 @@
 package br.net.itech.dtos;
 
+import java.util.Optional;
+
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class JusticeSecretDto {
-	private String id;
+	private Optional<String> id;
 
 	@NotEmpty(message = "Senha sigilosa não pode ser vazia.")
 	private String justiceSecret;
-	
+
 	public JusticeSecretDto() {
 	}
 
-	public String getId() {
+	public Optional<String> getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Optional<String> id) {
 		this.id = id;
 	}
 
@@ -32,6 +34,6 @@ public class JusticeSecretDto {
 
 	@Override
 	public String toString() {
-		return "JusticeSecretDto [id=" + id + ", justiceSecret=" + justiceSecret + "]";
+		return "JusticeSecretDto [id=" + id.get() + ", justiceSecret=" + justiceSecret + "]";
 	}
 }

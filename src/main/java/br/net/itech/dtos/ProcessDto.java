@@ -30,11 +30,11 @@ public class ProcessDto {
 	@NotEmpty(message = "O processo é com advogado?.")
 	private String withAttorney;
 
-	private Optional<String> oabAttorney;
+	private Optional<String> oabAttorney = Optional.empty();
 
 	private String confidentialProcess;
 
-	private Optional<String> justiceSecret;
+	private Optional<JusticeSecretDto> justiceSecret = Optional.empty();
 
 	public ProcessDto() {
 	}
@@ -119,11 +119,11 @@ public class ProcessDto {
 		this.confidentialProcess = confidentialProcess;
 	}
 
-	public Optional<String> getJusticeSecret() {
+	public Optional<JusticeSecretDto> getJusticeSecret() {
 		return justiceSecret;
 	}
 
-	public void setJusticeSecret(Optional<String> justiceSecret) {
+	public void setJusticeSecret(Optional<JusticeSecretDto> justiceSecret) {
 		this.justiceSecret = justiceSecret;
 	}
 

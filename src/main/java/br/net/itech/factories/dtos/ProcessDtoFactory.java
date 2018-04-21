@@ -35,8 +35,8 @@ public class ProcessDtoFactory {
 			processDto.setOabAttorney(Optional.ofNullable(process.getOabAttorney()));
 		processDto.setConfidentialProcess(String.valueOf(process.getConfidentialProcess()));
 		if (process.getConfidentialProcess())
-			processDto.setJusticeSecret(Optional.ofNullable(
-					justiceSecretDtoFactory.getJusticeSecretDto(process.getJusticeSecret()).getJusticeSecret()));
+			processDto.setJusticeSecret(
+					Optional.ofNullable(justiceSecretDtoFactory.getJusticeSecretDto(process.getJusticeSecret())));
 		return processDto;
 	}
 }

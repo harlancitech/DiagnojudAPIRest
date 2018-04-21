@@ -14,7 +14,10 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 @Table(name = "justice_secret")
 public class JusticeSecret {
 	@Id
