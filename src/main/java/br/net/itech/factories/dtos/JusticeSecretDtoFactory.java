@@ -1,5 +1,7 @@
 package br.net.itech.factories.dtos;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +20,7 @@ public class JusticeSecretDtoFactory {
 	 * @return ProvinceDto
 	 */
 	public JusticeSecretDto getJusticeSecretDto(JusticeSecret justiceSecret) {
-		justiceSecretDto.setId(String.valueOf(justiceSecret.getId()));
+		justiceSecretDto.setId(Optional.ofNullable(String.valueOf(justiceSecret.getId())));
 		justiceSecretDto.setJusticeSecret(justiceSecret.getJusticeSecret());
 		return justiceSecretDto;
 	}
